@@ -13,7 +13,7 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets\style\style.css">
+    <link rel="stylesheet" href="/assets/style/style.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -60,7 +60,7 @@
                         deserunt cupiditate?</span>
                 </div>
                 <div>
-                    <img class="nav-image" src="assets\image\Humanitarian Help-rafiki.png" alt="">
+                    <img class="nav-image" src="/assets/image/Humanitarian Help-rafiki.png" alt="">
                 </div>
             </div>
         </section>
@@ -101,7 +101,7 @@
         <!-- Footer -->
         <Footer class="footer">
             <div class="container-fluid">
-                <i class="social-icon fab fa-facebook-f justify-between"></i>
+                <i class="social-icon fab fa-facebook-f"></i>
                 <i class="social-icon fab fa-twitter"></i>
                 <i class="social-icon fab fa-instagram"></i>
                 <i class="social-icon fas fa-envelope"></i>
