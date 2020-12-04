@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:ital,wght@0,700;1,400&display=swap');
+
+.title {
+	font-family: 'ubuntu', sans-serif;
+	font-size: 38px;
+	text-align: center;
+}
+
+.text {
+	font-family: 'roboto', sans-serif;
+}
+
+.atribute-text {
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 1rem;
+	margin: 6px;
+}
+
+.leaderboard-text {
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.nav-image {
+	width: 100%;
+	border-radius: 100%;
+}
+
+.big-heading {
+	font-family: 'Sansita Swashed', sans-serif;
+	font-weight: 800;
+	color: #00000F;
+	font-size: 3.5rem;
+	line-height: 1.5;
+}
+
+.span-text {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.leaderboard-content {
+	padding-top: 2%;
+}
+
+.container-fluid {
+	padding: 1% 5%;
+}
+
+.footer {
+	text-align: center;
+}
+
+.social-icon {
+	margin: 20px 10px;
+}
+
+@media (max-width: 767px) {
+	.navicon {
+		top: 10px;
+		width: 1.125em;
+		height: .125em;
+	}
+
+	.navicon::before,
+	.navicon::after {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		transition: all .2s ease-out;
+		content: '';
+		background: #3D4852;
+	}
+
+	.navicon::before {
+		top: 5px;
+	}
+
+	.navicon::after {
+		top: -5px;
+	}
+
+	.menu-btn:not(:checked)~.menu {
+		display: none;
+	}
+
+	.menu-btn:checked~.menu {
+		display: block;
+	}
+
+	.menu-btn:checked~.menu-icon .navicon {
+		background: transparent;
+	}
+
+	.menu-btn:checked~.menu-icon .navicon::before {
+		transform: rotate(-45deg);
+	}
+
+	.menu-btn:checked~.menu-icon .navicon::after {
+		transform: rotate(45deg);
+	}
+
+	.menu-btn:checked~.menu-icon .navicon::before,
+	.menu-btn:checked~.menu-icon .navicon::after {
+		top: 0;
+	}
+}
