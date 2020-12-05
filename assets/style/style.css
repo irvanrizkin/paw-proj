@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:ital,wght@0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,600&family=Ubuntu:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
-.title {
-	font-family: 'ubuntu', sans-serif;
-	font-size: 38px;
-	text-align: center;
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 600;
 }
 
-.text {
-	font-family: 'roboto', sans-serif;
+.title {
+	font-family: 'Merriweather', sans-serif;
+	font-size: 30px;
+	text-align: center;
 }
 
 .atribute-text {
 	font-size: 20px;
-	font-weight: 500;
 	line-height: 1rem;
 	margin: 6px;
 }
@@ -22,23 +23,27 @@
 	font-size: 18px;
 }
 
-.nav-image {
-	width: 100%;
-	border-radius: 100%;
+.image {
+	width: 50%;
 }
 
 .big-heading {
-	font-family: 'Sansita Swashed', sans-serif;
 	font-weight: 800;
 	color: #00000F;
 	font-size: 3.5rem;
 	line-height: 1.5;
 }
 
+.admin {
+	font-family: 'Merriweather', sans-serif;
+	font-weight: 600;
+	font-size: 2rem;
+}
+
 .span-text {
-	font-family: 'Roboto', sans-serif;
+
 	font-weight: 500;
-	font-size: 20px;
+	font-size: 1.5rem;
 }
 
 .leaderboard-content {
@@ -55,6 +60,49 @@
 
 .social-icon {
 	margin: 20px 10px;
+}
+
+/* Button */
+.signin {
+	font-size: 1.5rem;
+	border-radius: 5px;
+	width: 110px;
+	font-weight: 600;
+	text-align: center;
+	padding: 2px;
+	background-color: #FD0D15;
+	color: #FFFFFF;
+	display: inline-block;
+	text-decoration: none;
+	box-shadow: -1px -1px 5px 0 #FD0D15;
+}
+
+.signin:hover {
+	background: #FD353C;
+	border: solid #FD353C 0;
+	border-radius: 5px;
+	text-decoration: none;
+}
+
+.signup {
+	font-size: 1.5rem;
+	border-radius: 5px;
+	width: 110px;
+	font-weight: 600;
+	text-align: center;
+	padding: 2px;
+	background-color: #F2F3E2;
+	color: #000000;
+	display: inline-block;
+	text-decoration: none;
+	box-shadow: -1px -1px 5px 0 #F2F3E2;
+}
+
+.signup:hover {
+	background: #F8F9F1;
+	border: solid #F8F9F1 0;
+	border-radius: 5px;
+	text-decoration: none;
 }
 
 @media (max-width: 767px) {
