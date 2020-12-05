@@ -11,7 +11,7 @@ class Model_admin extends CI_Model {
     public function getSuperAdmin(){
         return $this->db
             ->get('admin',1)
-            ->result()
+            ->result();
     }
 
     public function getAdminById($id_admin){
