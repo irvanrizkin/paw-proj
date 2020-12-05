@@ -2,8 +2,8 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 03, 2020 at 05:14 PM
+-- Host: localhost
+-- Generation Time: Dec 05, 2020 at 10:01 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -24,27 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id_admin` int(11) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
-(1, 'admin_dinkes', 'admin'),
-(2, 'admin_rs_soetomo', 'soetomo'),
-(3, 'admin_rs_harapan_bunda', 'harapan_bunda');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `pendonor`
 --
 
@@ -58,15 +37,33 @@ CREATE TABLE `pendonor` (
   `surat_negatif` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `jumlah_donor` int(11) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `pendonor`
+-- Table structure for table `riwayat_donor`
 --
 
-INSERT INTO `pendonor` (`nik`, `nama_lengkap`, `no_telepon`, `jenis_kelamin`, `surat_sehat`, `surat_positif`, `surat_negatif`, `status`, `jumlah_donor`, `password`) VALUES
-('195150701111015', 'Irvan Rizki Nugraha', '081081081081', 'L', 'surat_sehat.pdf', 'surat_positif.pdf', 'surat_negatif.pdf', 0, 0, 'irvan');
+CREATE TABLE `riwayat_donor` (
+  `id_donor` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_rs` int(11) NOT NULL,
+  `jumlah_donor` int(11) NOT NULL,
+  `tanggal_donor` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id_role` varchar(1) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -75,58 +72,107 @@ INSERT INTO `pendonor` (`nik`, `nama_lengkap`, `no_telepon`, `jenis_kelamin`, `s
 --
 
 CREATE TABLE `rumah_sakit` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `id_rs` int(11) NOT NULL,
+  `nama_rs` varchar(100) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `no_telepon` varchar(15) NOT NULL,
+  `ketersediaan_plasma` int(11) NOT NULL,
   `kebutuhan_plasma` int(11) NOT NULL,
-  `priority_plasma` tinyint(4) NOT NULL
+  `prioritas_plasma` tinyint(4) NOT NULL,
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `rumah_sakit`
+-- Table structure for table `user`
 --
 
-INSERT INTO `rumah_sakit` (`id`, `nama`, `alamat`, `no_telepon`, `kebutuhan_plasma`, `priority_plasma`) VALUES
-(1, 'Rumah Sakit Soetomo', 'Malang', '082082082082', 1500, 3);
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `id_role` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_admin`);
-
---
 -- Indexes for table `pendonor`
 --
 ALTER TABLE `pendonor`
-  ADD PRIMARY KEY (`nik`);
+  ADD PRIMARY KEY (`nik`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `riwayat_donor`
+--
+ALTER TABLE `riwayat_donor`
+  ADD PRIMARY KEY (`id_donor`),
+  ADD KEY `id_rs` (`id_rs`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id_role`);
 
 --
 -- Indexes for table `rumah_sakit`
 --
 ALTER TABLE `rumah_sakit`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_rs`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `id_role` (`id_role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rumah_sakit`
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pendonor`
+--
+ALTER TABLE `pendonor`
+  ADD CONSTRAINT `pendonor_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION;
+
+--
+-- Constraints for table `riwayat_donor`
+--
+ALTER TABLE `riwayat_donor`
+  ADD CONSTRAINT `riwayat_donor_ibfk_1` FOREIGN KEY (`id_rs`) REFERENCES `rumah_sakit` (`id_rs`),
+  ADD CONSTRAINT `riwayat_donor_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Constraints for table `rumah_sakit`
 --
 ALTER TABLE `rumah_sakit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  ADD CONSTRAINT `rumah_sakit_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
